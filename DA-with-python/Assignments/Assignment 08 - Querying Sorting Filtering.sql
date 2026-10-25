@@ -20,8 +20,10 @@ SELECT
   last_name,
   city,
   phone
-FROM Customers
-WHERE state = 'CA'
+FROM 
+    sales.customers
+WHERE 
+    state = 'CA'
   AND phone IS NOT NULL;
    
 
@@ -36,9 +38,16 @@ WHERE state = 'CA'
 
 -- Write your query below:
 
-SELECT product_id, product_name, model_year, list_price
-FROM products
-ORDER BY model_year DESC, list_price ASC;
+SELECT 
+    product_id, 
+    product_name, 
+    model_year, 
+    list_price
+FROM 
+    production.products
+ORDER BY 
+    model_year DESC, 
+    list_price ASC;
 
 
 
@@ -55,19 +64,23 @@ ORDER BY model_year DESC, list_price ASC;
 
 -- Part a:
 
-SELECT TOP 5 product_name, list_price
-FROM products
+SELECT TOP 5 product_name,list_price
+FROM 
+    production.products
 ORDER BY 
-  list_price DESC;
+    list_price DESC;
 
 
 
 -- Part b:
 SELECT TOP 5 PERCENT *
-FROM products
-ORDER BY list_price ASC;
+FROM 
+    PRODUCTION.products
+ORDER BY 
+    list_price ASC;
 
-# Expected count for the standard 321-row BikeStores
+--  Count for the standard 321-row BikeStores
+-- 5% of 321 products = 17 rows (after rounding up)
 
 
 
@@ -85,29 +98,44 @@ ORDER BY list_price ASC;
 -- ============================================================
 
 -- Page 1:
-SELECT *
-FROM products
-ORDER BY list_price DESC, product_id ASC
-OFFSET 0 ROWS
-FETCH NEXT 10 ROWS ONLY;
+SELECT 
+    *
+FROM 
+    production.products
+ORDER BY 
+    list_price DESC
+OFFSET
+     0 ROWS
+FETCH 
+    NEXT 10 ROWS ONLY;
 
 
 
 -- Page 2:
-SELECT *
-FROM products
-ORDER BY list_price DESC, product_id ASC
-OFFSET 10 ROWS
-FETCH NEXT 10 ROWS ONLY;
+SELECT 
+    *
+FROM
+     production.products
+ORDER BY  
+    list_price DESC
+OFFSET 
+    10 ROWS
+FETCH 
+    NEXT 10 ROWS ONLY;
 
 
 
 -- Page 3:
-SELECT *
-FROM products
-ORDER BY list_price DESC, product_id ASC
-OFFSET 20 ROWS
-FETCH NEXT 10 ROWS ONLY;
+SELECT 
+    *
+FROM 
+    production.products
+ORDER BY 
+    list_price DESC
+OFFSET 
+    20 ROWS
+FETCH 
+    NEXT 10 ROWS ONLY;
 
 
 
@@ -127,21 +155,23 @@ FETCH NEXT 10 ROWS ONLY;
 -- Part a:
 SELECT DISTINCT
   state 
-FROM customers
-ORDERBY state ASC;
+FROM 
+  sales.customers
+ORDER BY 
+  state ASC;
 
 
 
 -- Part b:
 SELECT DISTINCT
   state, city
-FROM Customers
+FROM sales.customers
 ORDER BY state ASC, City ASC;
 
 
 -- Part c:
 SELECT COUNT(DISTINCT model_year) 
-FROM Customers;
+FROM sales.customers;
 
 
 
@@ -159,9 +189,17 @@ FROM Customers;
 
 -- Write your query below:
 
-SELECT product_id, product_name, brand_id, category_id, list_price
-FROM products
-WHERE list_price BETWEEN 500 AND 1500
+SELECT 
+    product_id, 
+    product_name, 
+    brand_id, 
+    category_id, 
+    list_price
+FROM production.
+    products
+WHERE 
+    list_price BETWEEN 500 and 1500
   AND (model_year = 2019 OR model_year = 2020)
-ORDER BY list_price ASC;
+ORDER BY 
+    list_price ASC;
 
